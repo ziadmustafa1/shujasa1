@@ -1,18 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from 'react'
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -94,7 +79,7 @@ export default function Example() {
                                             <img src={product.imageSrc} alt={product.imageAlt} className="object-cover object-center" />
                                         </div>
                                         <div className="sm:col-span-8 lg:col-span-7">
-                                            <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{product.name}</h2>
+                                            <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{`product`.name}</h2>
 
                                             <section aria-labelledby="information-heading" className="mt-2">
                                                 <h3 id="information-heading" className="sr-only">

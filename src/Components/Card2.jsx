@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-script-url */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from "react";
 import { CartContext } from "./context/ShoppingCartContext";
+import { Link } from "react-router-dom";
 const products = [
   {
     id: 2,
@@ -56,7 +56,7 @@ const products = [
   },
   // More products...
 ];
-const Card2 = ({ product }) => {
+const Card2 = () => {
   const { addToCart } = useContext(CartContext);
   return (
     <div className="bg-h">
@@ -69,11 +69,12 @@ const Card2 = ({ product }) => {
           {products.map((product) => (
             <div key={product.id} className="card2 bg-white">
               <div className="aspect-h-1 aspect-w-1  h-20 overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
+              <Link to={`/product/${product.id}`}>
                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
                   className="img-top-2  object-cover object-center "
-                />
+                /></Link>
               </div>
               <div className="mt-4 text-center m-4">
                 <div>
@@ -106,8 +107,7 @@ const Card2 = ({ product }) => {
                     className="btn-wc-additional wooler-preview-button"
                     data-product-id="e7a9cdcc-be63-4763-9596-236262067e46"
                     data-wl-tooltip="Preview"
-                    data-wl-tooltip-placement="left"
-                    tabindex="-1"
+                    data-wl-tooltip-placement="left"                    
                   >
                     <i className="fa-regular fa-circle-question"></i>
                   </a>

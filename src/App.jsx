@@ -24,7 +24,7 @@ function App() {
     <Header2 />
     <Routes>
     <Route index element={<HomePage />} />     
-    <Route path="product-details/:productId" element={<CardDetails />} />
+    <Route path="product/:productId" element={<CardDetails />} />
     <Route path='/cart' element={<Cart/>} />
     <Route path='/refundexchangepolicy' element={<RefundExchangePolicy/>} />
     <Route path='/login' element={<Login/>} />

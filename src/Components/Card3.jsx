@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable no-script-url */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from "react";
 import { CartContext } from "./context/ShoppingCartContext";
+import { Link } from "react-router-dom";
 const products = [
   {
     id: 7,
@@ -45,7 +48,7 @@ const products = [
   },  
   // More products...
 ];
-const Card3 = ({ product }) => {
+const Card3 = () => {
   const { addToCart } = useContext(CartContext);
   return (
     <div className="bg-h">
@@ -58,11 +61,13 @@ const Card3 = ({ product }) => {
           {products.map((product) => (
             <div key={product.id} className="card2 bg-white">
               <div className="aspect-h-1 aspect-w-1  h-20 overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
-                <img
+                <Link to={`/product/${product.id}`}>
+                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
                   className="img-top-2  object-cover object-center "
                 />
+                </Link>                
               </div>
               <div className="mt-4 text-center m-4">
                 <div>

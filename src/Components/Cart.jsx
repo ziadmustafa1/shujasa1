@@ -1,7 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/no-redundant-roles */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import { useCart } from 'react-use-cart';
 import { CartContext } from './context/ShoppingCartContext';
 import { useContext } from 'react';
 const Cart = () => {

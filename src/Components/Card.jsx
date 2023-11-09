@@ -5,6 +5,7 @@
 /* eslint-disable no-script-url */
 import React, { useContext, useEffect } from 'react'
 import { CartContext } from './context/ShoppingCartContext';
+import { Link } from 'react-router-dom';
 const products = [
   {
     id: 1,
@@ -17,7 +18,7 @@ const products = [
   },
   // More products...
 ]
-const Card = ({ product }) => {
+const Card = () => {
   const { addToCart } = useContext(CartContext);
   return (
     <div className="bg-h">
@@ -30,11 +31,13 @@ const Card = ({ product }) => {
           {products.map((product) => (
             <div key={product.id} className="card bg-white">
               <div className="aspect-h-1 aspect-w-1  h-20 overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
+              <Link to={`/product/${product.id}`}>
                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
                   className="img-top-2  object-cover object-center "
                 />
+                </Link>
               </div>
               <div className="mt-4 text-center m-4">
                 <div>

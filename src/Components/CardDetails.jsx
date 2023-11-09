@@ -1,258 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { StarIcon } from '@heroicons/react/20/solid'
 import QuantityInput from './from'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CartContext } from './context/ShoppingCartContext';
+import { useParams } from 'react-router-dom';
 
-const products = [{
-  id: 1,
-  name: 'Diriyah',
-  href: '#',
-  images: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7cad1f3f-ab5a-4c42-888f-71b8127c4133.png',
-      alt: "Front of men's Basic Tee in black.",
-    }],
-  price: '193.00 ر.س',
 
-},
-{
-  id: 2,
-  name: "Green Flower",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},
-{
-  id: 3,
-  name: "Smokey Wood",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},
-{
-  id: 4,
-  name: "Iris Musk",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},
-{
-  id: 5,
-  name: "Velvet Amber",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},
-{
-  id: 6,
-  name: "Shuja Musk",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},
-{
-  id: 7,
-  name: "Shuja Musk - Hair Mist",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},
-{
-  id: 8,
-  name: "Velvet Amber - Hair Mist",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},
-{
-  id: 9,
-  name: "Iris Musk - Hair Mist",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},
-{
-  id: 10,
-  name: "Smokey Wood - Hair Mist",
-  href: "#",
-  imageSrc: [
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/edf0a930-e5d6-46b7-b6c2-4facff4fbb7f.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/281608d4-2d5a-44bb-9973-5f437a8f6c77.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/7eef0b11-2eaf-4495-990c-d35de12580ee.png',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: "https://media.zid.store/bda63855-f7ff-4be7-bd9f-1d497a22336c/f781efce-7be4-4894-8b34-0b29ff7e297b.png",
-      alt: "Front of men's Basic Tee in black.",
-    }
-  ],
-  price: "193.00 ر.س",
-  color: "",
-},]
 const route = window.location.pathname;
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -260,10 +13,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 const CardDetails = () => {
-  const [product, setProduct] = useState(products[0]);
-
+  const api_url = "https://bak-end-shujasa.onrender.com/posts";
+  const [product, setProduct] = useState({});
+  const params = useParams();
+  console.log(params);
+  useEffect(() => {
+    fetch(`${api_url}/${params.productId}`)
+      .then((res) => res.json())
+      .then((product) => setProduct(product));
+  }, []);
   const { addToCart } = useContext(CartContext);
- 
   return (
     <div>
       <div className="bg-h">
@@ -295,11 +54,13 @@ const CardDetails = () => {
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 d-s lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             {/* Product info */}
             <div className="w-g1 md:block aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-              <img
-                src={product.images[3].src}
-                alt={product.images[3].alt}
-                className="w-h object-cover object-center"
-              />
+              {product.images && product.images.length >= 4 && (
+                <img
+                  src={product.images[3].src}
+                  alt={product.images[3].alt}
+                  className="w-h object-cover object-center"
+                />
+              )}
             </div>
             <div className="mx-auto text-center max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
               <div className='bg-white p-10 rounded-2xl'>
@@ -335,7 +96,7 @@ const CardDetails = () => {
                   <form className="mt-10">
                     <QuantityInput />
                     <button
-                    onClick={() => addToCart(product)}
+                      onClick={() => addToCart(product)}
                       type="submit"
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-ad px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
@@ -352,35 +113,43 @@ const CardDetails = () => {
                 </div>
               </div>
               <div className="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg">
-                <img
-                  src={product.images[0].src}
-                  alt={product.images[0].alt}
-                  className="w-d object-cover object-center"
-                />
+                {product.images && product.images.length >= 4 && (
+                  <img
+                    src={product.images[0].src}
+                    alt={product.images[0].alt}
+                    className="w-h object-cover object-center"
+                  />
+                )}
               </div>
               <div className="lg:grid lg:grid-cols-1 lg:gap-y-8">
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                  <img
-                    src={product.images[1].src}
-                    alt={product.images[1].alt}
-                    className="w-d object-cover object-center"
-                  />
+                  {product.images && product.images.length >= 4 && (
+                    <img
+                      src={product.images[1].src}
+                      alt={product.images[1].alt}
+                      className="w-h object-cover object-center"
+                    />
+                  )}
                 </div>
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                  <img
-                    src={product.images[2].src}
-                    alt={product.images[2].alt}
-                    className="w-d object-cover object-center"
-                  />
+                  {product.images && product.images.length >= 4 && (
+                    <img
+                      src={product.images[2].src}
+                      alt={product.images[2].alt}
+                      className="w-h object-cover object-center"
+                    />
+                  )}
                 </div>
               </div>
             </div>
             <div className="w-g aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-              <img
-                src={product.images[3].src}
-                alt={product.images[3].alt}
-                className="w-h object-cover object-center"
-              />
+              {product.images && product.images.length >= 4 && (
+                <img
+                  src={product.images[3].src}
+                  alt={product.images[3].alt}
+                  className="w-h object-cover object-center"
+                />
+              )}
             </div>
           </div>
         </div>
